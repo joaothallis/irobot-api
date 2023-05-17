@@ -7,6 +7,8 @@ description = ""
 authors = [
     {name = "João Thallis", email = "joaothallis@icloud.com"},
 ]
-dependencies = []
+dependencies = [
+    "flask-restx>=1.1.0",
+]
 requires-python = ">=3.10"
 license = {text = "MIT"}
