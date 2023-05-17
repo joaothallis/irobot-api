@@ -1,0 +1,12 @@
+[tool.pdm]
+
+[project]
+name = "IRobotAPI"
+version = "0.1"
+description = ""
+authors = [
+    {name = "João Thallis", email = "joaothallis@icloud.com"},
+]
+dependencies = []
+requires-python = ">=3.10"
+license = {text = "MIT"}
