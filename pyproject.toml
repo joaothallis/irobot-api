@@ -9,6 +9,7 @@ authors = [
 ]
 dependencies = [
     "flask-restx>=1.1.0",
+    "irobot-edu-sdk>=0.3.0",
 ]
 requires-python = ">=3.10"
 license = {text = "MIT"}
