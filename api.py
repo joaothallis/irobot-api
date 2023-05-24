@@ -6,7 +6,7 @@ import os
 import time
 
 app = Flask(__name__)
-api = Api(app)
+api = Api(app, version='0.1', title='IRobot API', description='API for controlling iRobot Create 3')
 
 
 @api.route("/play")
@@ -20,6 +20,7 @@ class Play(Resource):
         process.send_signal(signal.SIGINT)
         print("Waiting for CTRL-C")
         process.wait()
+        os.chdir("../")
         return "Success"
 
 
