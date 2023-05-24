@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restx import Resource, Api
 import subprocess
 import signal
+import os
 import time
 
 app = Flask(__name__)
@@ -12,6 +13,7 @@ api = Api(app)
 class Play(Resource):
 
     def get(self):
+        os.chdir("examples")
         process = subprocess.Popen(["pdm", "run", "touch_music.py"])
         time.sleep(15)
         print("Sending CTRL-C signal")
