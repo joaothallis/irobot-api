@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_restx import Resource, Api
-from irobot_edu_sdk.backend.bluetooth import Bluetooth
-from irobot_edu_sdk.robots import event, Create3
-from irobot_edu_sdk.music import Note
+import subprocess
+import signal
+import time
 
 app = Flask(__name__)
 api = Api(app)
@@ -10,15 +10,15 @@ api = Api(app)
 
 @api.route("/play")
 class Play(Resource):
+
     def get(self):
-        robot = Create3(Bluetooth())
-        duration = 0.50
-
-        @event(robot.when_play)
-        async def play(robot):
-            await robot.play_note(Note.A4, duration)
-
-        robot.play()
+        process = subprocess.Popen(["pdm", "run", "touch_music.py"])
+        time.sleep(15)
+        print("Sending CTRL-C signal")
+        process.send_signal(signal.SIGINT)
+        print("Waiting for CTRL-C")
+        process.wait()
+        return "Success"
 
 
 if __name__ == "__main__":
