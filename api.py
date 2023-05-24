@@ -13,14 +13,12 @@ api = Api(app, version='0.1', title='IRobot API', description='API for controlli
 class Play(Resource):
 
     def get(self):
-        os.chdir("examples")
-        process = subprocess.Popen(["pdm", "run", "touch_music.py"])
+        process = subprocess.Popen(["pdm", "run", "touch_music.py"], cwd=r'examples')
         time.sleep(15)
         print("Sending CTRL-C signal")
         process.send_signal(signal.SIGINT)
         print("Waiting for CTRL-C")
         process.wait()
-        os.chdir("../")
         return "Success"
 
 
