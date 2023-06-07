@@ -1,0 +1,22 @@
+input[name="action0"]{
+    background-color: lightpink;
+}
+
+.btn {
+    background-color: lightskyblue;
+    border: 0;
+    color: white;
+    align-items: center;
+    border-radius: 25px;
+    width: 150px;
+    height: 100px;
+    font-size: xx-large;
+}
+
+.btnMove, .btnBeep {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+

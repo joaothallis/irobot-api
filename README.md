@@ -5,9 +5,17 @@
 * Python 3.10+
 * [pdm](https://pdm.fming.dev)
 
-## Running
+## Running on unix
 
 ```bash
 pdm install
-pdm run api.py
+FLASK_APP=api.py pdm run flask run
+```
+
+## Running on Windows
+
+```bash
+pdm install
+$env:FLASK_APP="api.py"
+pdm run flask run
 ```
