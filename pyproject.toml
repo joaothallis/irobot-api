@@ -1,7 +1,7 @@
 [tool.pdm]
 
 [project]
-name = "Robot Controller"
+name = "robot-controller"
 version = "0.1"
 description = ""
 authors = [
