@@ -4,9 +4,9 @@ import subprocess
 import signal
 import time
 
-app = Flask(__name__)
-app.config['STATIC_FOLDER'] = '/static'
-app.static_folder = 'static'
+app = Flask(__name__, template_folder='./src/templates/')
+app.config['STATIC_FOLDER'] = './src/static'
+app.static_folder = './src/static'
 api = Api(app,
           version='0.1',
           title='Robot Controller',
