@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_restx import Resource, Api
 import subprocess
 import signal
+import os
 import time
 
 app = Flask(__name__, template_folder='./src/templates/')
@@ -20,6 +21,16 @@ def index():
             return play()
         elif request.form.get('action1') == 'up':
             return move()
+        elif request.form.get('action2') == 'left':
+            return turn_left()
+        elif request.form.get('action3') == 'right':
+            return turn_right()
+        elif request.form.get('action4') == 'down':
+            return move_down()
+        elif request.form.get('action5') == 'navig':
+            return navigation()
+        elif request.form.get('stop') == 'stop':
+            return stop()
     elif request.method == 'GET':
         return render_template('index.html')
 
@@ -36,20 +47,32 @@ def move():
     subprocess.Popen(["pdm", "run", "move.py"], cwd=r'examples')
     return render_template('index.html')
 
+def turn_left():
+    print('Executing turn left')
+    subprocess.Popen(["pdm", "run", "turn_left.py"], cwd=r'examples')
+    return render_template('index.html')
 
-@api.route("/play")
-class Play(Resource):
+def turn_right():
+    print('Executing turn right')
+    subprocess.Popen(["pdm", "run", "turn_right.py"], cwd=r'examples')
+    return render_template('index.html')
 
-    def get(self):
-        process = subprocess.Popen(["pdm", "run", "touch_music.py"],
-                                   cwd=r'examples')
-        time.sleep(15)
-        print("Sending CTRL-C signal")
-        process.send_signal(signal.SIGINT)
-        print("Waiting for CTRL-C")
-        process.wait()
-        return "Success"
+def move_down():
+    print('Executing move down')
+    subprocess.Popen(["pdm", "run", "move_down.py"], cwd=r'examples')
+    return render_template('index.html')
 
+navigationVar = None
+
+def navigation():
+    print('Executing navigation')
+    navigationVar = subprocess.Popen(["pdm", "run", "navigation.py"], cwd=r'examples')
+    print(navigationVar)
+    return render_template('index.html')
+
+def stop():   
+    navigationVar.terminate()
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

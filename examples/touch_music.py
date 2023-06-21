@@ -5,11 +5,12 @@
 from irobot_edu_sdk.backend.bluetooth import Bluetooth
 from irobot_edu_sdk.robots import event, hand_over, Color, Robot, Root, Create3
 from irobot_edu_sdk.music import Note
+import time
 
-robot = Create3(Bluetooth('iRobotCreate3'))
+robot = Create3(Bluetooth('iRobot-06C2ACFB22E5481198A7D9'))
+
 
 duration = 0.15
-
 
 @event(robot.when_touched, [True, False])  # (.) button.
 async def touched(robot):
@@ -32,6 +33,8 @@ async def touched(robot):
 async def play(robot):
     await robot.play_note(Note.A5, duration)
     await robot.play_note(Note.A6, duration)
+    time.sleep(1)
+    exit()
 
 
 robot.play()
