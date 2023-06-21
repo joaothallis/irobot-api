@@ -19,15 +19,13 @@ def index():
         if request.form.get('action0') == 'beep':
             return play()
         elif request.form.get('action1') == 'up':
-            return move()
+            return navigation()
         elif request.form.get('action2') == 'left':
             return turn_left()
         elif request.form.get('action3') == 'right':
             return turn_right()
         elif request.form.get('action4') == 'down':
             return move_down()
-        elif request.form.get('action5') == 'navig':
-            return navigation()
         elif request.form.get('stop') == 'stop':
             return stop()
     elif request.method == 'GET':
@@ -39,18 +37,16 @@ def play():
     print('Successfully executed play')
     return render_template('index.html')
 
-def move():
-    enable_run()
-    print('Executing move')
-    subprocess.Popen(["pdm", "run", "move.py"], cwd=r'examples')
-    return render_template('index.html')
-
 def turn_left():
+    stop()
+    time.sleep(1)
     print('Executing turn left')
     subprocess.Popen(["pdm", "run", "turn_left.py"], cwd=r'examples')
     return render_template('index.html')
 
 def turn_right():
+    stop()
+    time.sleep(1)
     print('Executing turn right')
     subprocess.Popen(["pdm", "run", "turn_right.py"], cwd=r'examples')
     return render_template('index.html')

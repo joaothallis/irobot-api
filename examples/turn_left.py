@@ -8,10 +8,10 @@ robot = Root(backend)
 
 @event(robot.when_play)
 async def walk(robot):
-    while True:
-        print('walk')
-        await robot.turn_left(90)
-        exit()
+    #while True:
+    print('walk')
+    await robot.turn_left(90)
+    exit()
 
 
 @event(robot.when_bumped, [True, True])

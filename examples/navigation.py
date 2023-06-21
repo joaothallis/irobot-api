@@ -22,6 +22,56 @@ async def backoff(robot):
     await robot.move(-20)
     await robot.turn_left(45)
 
+@event(robot.when_bumped, [True, True])
+async def bumped(robot):
+    await robot.move(-10)
+    await robot.turn_right(45)
+    await forward(robot) 
+    while enabled():            
+        sensors = (await robot.get_ir_proximity()).sensors
+        if front_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if left_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if right_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+
+@event(robot.when_bumped, [True, False])
+async def bumped(robot):
+    await robot.move(-10)
+    await robot.turn_right(45)
+    await forward(robot) 
+    while enabled():            
+        sensors = (await robot.get_ir_proximity()).sensors
+        if front_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if left_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if right_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+
+@event(robot.when_bumped, [False, True])
+async def bumped(robot):
+    await robot.move(-10)
+    await robot.turn_right(45)
+    await forward(robot) 
+    while enabled():            
+        sensors = (await robot.get_ir_proximity()).sensors
+        if front_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if left_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if right_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
 
 def front_obstacle(sensors):
     return sensors[3] > th
