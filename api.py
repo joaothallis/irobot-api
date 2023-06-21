@@ -10,7 +10,7 @@ app.config['STATIC_FOLDER'] = '/static'
 app.static_folder = 'static'
 api = Api(app,
           version='0.1',
-          title='IRobot API',
+          title='Robot Controller',
           description='API for controlling iRobot Create 3')
 
 

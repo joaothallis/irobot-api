@@ -1,7 +1,7 @@
 [tool.pdm]
 
 [project]
-name = "IRobotAPI"
+name = "Robot Controller"
 version = "0.1"
 description = ""
 authors = [

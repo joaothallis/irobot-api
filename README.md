@@ -1,4 +1,4 @@
-# IRobot API
+# Robot Controller
 
 ## Requirements
 
