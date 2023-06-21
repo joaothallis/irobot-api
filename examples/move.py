@@ -9,17 +9,19 @@ robot = Root(backend)
 
 @event(robot.when_play)
 async def walk(robot):
-    while True:
+    while enabled():
         print('walk')
-        await robot.move(100)
+        await robot.move(1000)
         exit()
 
 
-@event(robot.when_bumped, [True, True])
-async def talk(robot):
-    while True:
-        print('talk')
-        await robot.say("It's a beautiful day in the neighborhood")
+def enabled():
+    f = open("../run", "r")
+    run = f.read()
+    if 'true' in run:
+        return True
+    else:
+        exit()
 
 
 print("Start executing")

@@ -40,6 +40,7 @@ def play():
     return render_template('index.html')
 
 def move():
+    enable_run()
     print('Executing move')
     subprocess.Popen(["pdm", "run", "move.py"], cwd=r'examples')
     return render_template('index.html')
@@ -59,11 +60,15 @@ def move_down():
     subprocess.Popen(["pdm", "run", "move_down.py"], cwd=r'examples')
     return render_template('index.html')
 
-def navigation():
+def enable_run():
     f = open("run", "a")
     f.truncate(0)
     f.write("true")
     f.close()
+
+
+def navigation():
+    enable_run()
     print('Executing navigation')
     subprocess.Popen(["pdm", "run", "navigation.py"], cwd=r'examples')
     return render_template('index.html')
