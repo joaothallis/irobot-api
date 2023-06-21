@@ -13,7 +13,6 @@ api = Api(app,
           title='Robot Controller',
           description='API for controlling iRobot Create 3')
 
-
 @app.route("/index", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -34,13 +33,11 @@ def index():
     elif request.method == 'GET':
         return render_template('index.html')
 
-
 def play():
     print('Executing play')
     subprocess.Popen(["pdm", "run", "touch_music.py"], cwd=r'examples')
     print('Successfully executed play')
     return render_template('index.html')
-
 
 def move():
     print('Executing move')
@@ -62,20 +59,19 @@ def move_down():
     subprocess.Popen(["pdm", "run", "move_down.py"], cwd=r'examples')
     return render_template('index.html')
 
-navigationVar = None
-
 def navigation():
-    f = open("navigation", "a")
-    f.write("True")
+    f = open("run", "a")
+    f.truncate(0)
+    f.write("true")
     f.close()
     print('Executing navigation')
-    navigationVar = subprocess.Popen(["pdm", "run", "navigation.py"], cwd=r'examples')
-    print(navigationVar)
+    subprocess.Popen(["pdm", "run", "navigation.py"], cwd=r'examples')
     return render_template('index.html')
 
 def stop():   
-    f = open("navigation", "a")
-    f.write("False")
+    f = open("run", "a")
+    f.truncate(0)
+    f.write("false")
     f.close()
     return render_template('index.html')
 

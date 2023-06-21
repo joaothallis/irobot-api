@@ -12,7 +12,6 @@ robot = Create3(Bluetooth('iRobot-06C2ACFB22E5481198A7D9'))
 speed = 10
 th = 150
 
-
 async def forward(robot):
     await robot.set_lights_rgb(0, 255, 0)
     await robot.set_wheel_speeds(speed, speed)
@@ -25,21 +24,18 @@ async def backoff(robot):
 
 
 def front_obstacle(sensors):
-    #print(sensors[3])
     return sensors[3] > th
 
 def left_obstacle(sensors):
-    #print(sensors[2])
     return sensors[2] > th
 
 def right_obstacle(sensors):
-    #print(sensors[4])
     return sensors[4] > th
 
 @event(robot.when_play)
 async def play(robot):
-    await forward(robot)
-    while enabled():
+    await forward(robot) 
+    while enabled():            
         sensors = (await robot.get_ir_proximity()).sensors
         if front_obstacle(sensors):
             await backoff(robot)
@@ -52,9 +48,11 @@ async def play(robot):
             await forward(robot)
 
 def enabled():
-    f = open("navigation", "r")
-    f.read() == "True"
-
-        
+    f = open("../run", "r")
+    run = f.read()
+    if 'true' in run:
+        return True
+    else:
+        exit()
 
 robot.play()
