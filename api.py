@@ -65,13 +65,18 @@ def move_down():
 navigationVar = None
 
 def navigation():
+    f = open("navigation", "a")
+    f.write("True")
+    f.close()
     print('Executing navigation')
     navigationVar = subprocess.Popen(["pdm", "run", "navigation.py"], cwd=r'examples')
     print(navigationVar)
     return render_template('index.html')
 
 def stop():   
-    navigationVar.terminate()
+    f = open("navigation", "a")
+    f.write("False")
+    f.close()
     return render_template('index.html')
 
 if __name__ == "__main__":

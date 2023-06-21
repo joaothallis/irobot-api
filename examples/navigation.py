@@ -39,7 +39,7 @@ def right_obstacle(sensors):
 @event(robot.when_play)
 async def play(robot):
     await forward(robot)
-    while True:
+    while enabled():
         sensors = (await robot.get_ir_proximity()).sensors
         if front_obstacle(sensors):
             await backoff(robot)
@@ -50,6 +50,11 @@ async def play(robot):
         if right_obstacle(sensors):
             await backoff(robot)
             await forward(robot)
+
+def enabled():
+    f = open("navigation", "r")
+    f.read() == "True"
+
         
 
 robot.play()
