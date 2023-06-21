@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from flask_restx import Resource, Api
 import subprocess
 import signal
-import os
 import time
 
 app = Flask(__name__)
