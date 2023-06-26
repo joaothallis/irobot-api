@@ -14,9 +14,12 @@ api = Api(
 )
 
 
-@app.route("/index", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
+@api.route("/controller")
+class RobotController(Resource):
+    def get(self):
+        return render_template("index.html")
+
+    def post(self):
         if request.form.get("action0") == "beep":
             return play()
         elif request.form.get("action1") == "up":
@@ -29,8 +32,6 @@ def index():
             return move_down()
         elif request.form.get("stop") == "stop":
             return stop()
-    elif request.method == "GET":
-        return render_template("index.html")
 
 
 def play():
