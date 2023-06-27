@@ -13,14 +13,6 @@ async def walk(robot):
     await robot.turn_right(90)
     exit()
 
-
-@event(robot.when_bumped, [True, True])
-async def talk(robot):
-    while True:
-        print('talk')
-        await robot.say("It's a beautiful day in the neighborhood")
-
-
 print("Start executing")
 robot.play()
 

@@ -18,7 +18,7 @@ def index():
     if request.method == 'POST':
         if request.form.get('action0') == 'beep':
             return play()
-        elif request.form.get('action1') == 'up':
+        elif request.form.get('action1') == 'move':
             return navigation()
         elif request.form.get('action2') == 'left':
             return turn_left()
@@ -26,7 +26,7 @@ def index():
             return turn_right()
         elif request.form.get('action4') == 'down':
             return move_down()
-        elif request.form.get('stop') == 'stop':
+        elif request.form.get('stop') == '':
             return stop()
     elif request.method == 'GET':
         return render_template('index.html')

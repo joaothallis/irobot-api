@@ -18,3 +18,12 @@ input[name="action0"] {
   display: flex;
   justify-content: space-around;
 }
+
+.btnMove {
+  position: relative;
+}
+
+.fa.fa-stop {
+  position: absolute;
+  top: calc(50% - 7px);
+}

@@ -16,14 +16,6 @@ async def walk(robot):
         exit()
         print(backend.is_connected)
 
-
-@event(robot.when_bumped, [True, True])
-async def talk(robot):
-    while True:
-        print('talk')
-        await robot.say("It's a beautiful day in the neighborhood")
-
-
 print("Start executing")
 robot.play()
 

@@ -27,51 +27,22 @@ async def bumped(robot):
     await robot.move(-10)
     await robot.turn_right(45)
     await forward(robot) 
-    while enabled():            
-        sensors = (await robot.get_ir_proximity()).sensors
-        if front_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if left_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if right_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
+    replay(robot)
 
 @event(robot.when_bumped, [True, False])
 async def bumped(robot):
     await robot.move(-10)
     await robot.turn_right(45)
     await forward(robot) 
-    while enabled():            
-        sensors = (await robot.get_ir_proximity()).sensors
-        if front_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if left_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if right_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
+    replay(robot)
 
 @event(robot.when_bumped, [False, True])
 async def bumped(robot):
     await robot.move(-10)
     await robot.turn_right(45)
     await forward(robot) 
-    while enabled():            
-        sensors = (await robot.get_ir_proximity()).sensors
-        if front_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if left_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
-        if right_obstacle(sensors):
-            await backoff(robot)
-            await forward(robot)
+    replay(robot)
+    
 
 def front_obstacle(sensors):
     return sensors[3] > th
@@ -85,6 +56,19 @@ def right_obstacle(sensors):
 @event(robot.when_play)
 async def play(robot):
     await forward(robot) 
+    while enabled():            
+        sensors = (await robot.get_ir_proximity()).sensors
+        if front_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if left_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+        if right_obstacle(sensors):
+            await backoff(robot)
+            await forward(robot)
+
+async def replay(robot):
     while enabled():            
         sensors = (await robot.get_ir_proximity()).sensors
         if front_obstacle(sensors):
