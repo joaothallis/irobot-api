@@ -6,16 +6,12 @@ import time
 backend = Bluetooth("iRobot-06C2ACFB22E5481198A7D9")
 robot = Root(backend)
 
-print(backend.is_connected)
-
-
 @event(robot.when_play)
 async def walk(robot):
-    while True:
+    #while True:
         print("walk")
         await robot.turn_right(180)
         exit()
-        print(backend.is_connected)
 
 print("Start executing")
 robot.play()

@@ -57,6 +57,8 @@ def turn_right():
 
 
 def move_down():
+    stop()
+    time.sleep(1)
     print("Executing move down")
     subprocess.Popen(["pdm", "run", "move_down.py"], cwd=r"examples")
     return render_template("index.html")

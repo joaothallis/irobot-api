@@ -47,8 +47,6 @@ async def bumped(robot):
     await forward(robot) 
     replay(robot)
     
-
-
 def front_obstacle(sensors):
     return sensors[3] > th
 
