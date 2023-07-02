@@ -13,6 +13,18 @@ input[name="action0"] {
   font-size: xx-large;
 }
 
+@media screen and (max-width:520px) {
+  .btn{
+    width: 120px;
+  }
+}
+
+@media screen and (max-width:420px) {
+  .btn{
+    width: 95px;
+  }
+}
+
 .btnMove,
 .btnBeep {
   display: flex;
